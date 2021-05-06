@@ -89,7 +89,7 @@ router.post('/op-client', (req, res)=>{
 
 
 /**Reporte 2: Totales de créditos y débitos para una institucion financiera*/
-router.get('/credit-debit', (req, res)=>{
+router.put('/credit-debit', (req, res)=>{
     const { institucionbancaria } = req.body;  
    const query=`select SUM(montotransferencia) as Total_Debitos from totales_debitos where institucionbancaria_debito= \'${institucionbancaria}\'`;
     cliente.execute(query)
@@ -97,7 +97,7 @@ router.get('/credit-debit', (req, res)=>{
         const query_creditos=`select SUM(montotransferencia) as Total_Creditos from totales_creditos where institucionbancaria_credito= \'${institucionbancaria}\'`;
         cliente.execute(query_creditos)
         .then(result_creditos => {
-            res.status(200).json({'total_debitos:':result.first().total_debitos, 'total_creditos':result_creditos.first().total_creditos})
+            res.status(200).json({'total_debitos':result.first().total_debitos, 'total_creditos':result_creditos.first().total_creditos})
         })
         .catch(reason => res.status(500).json({'result':reason}));
     })
@@ -107,17 +107,27 @@ router.get('/credit-debit', (req, res)=>{
 
 /**Reporte 3: Cuentahabientes*/
 router.get('/clients', (req, res)=>{
+
    const query=`select * from CuentahabientesPorInstitucion;`;
     cliente.execute(query)
-    .then(result => {res.status(200).json({'result:':result.rows})})
+    .then(result => {res.status(200).json(result.rows)})
     .catch(reason => res.status(500).json({'result':reason}));
 });
+
+/**Reporte 3.2: Cuentahabientes*/
+router.put('/clients2', (req, res)=>{
+    const { institucionbancaria } = req.body;
+    const query=`select * from CuentahabientesPorInstitucion where InstitucionBancaria=\'${institucionbancaria}\';`;
+     cliente.execute(query)
+     .then(result => {res.status(200).json(result.rows)})
+     .catch(reason => res.status(500).json({'result':reason}));
+ });
 
 /**Reporte 4: Instituciones bancarias*/
 router.get('/bancos', (req, res)=>{
     const query=`select institucionbancaria, abreviacioninst from CuentahabientesPorInstitucion group by institucionbancaria;`;
      cliente.execute(query)
-     .then(result => {res.status(200).json({'result:':result.rows})})
+     .then(result => {res.status(200).json(result.rows)})
      .catch(reason => res.status(500).json({'result':reason}));
  });
 
@@ -132,11 +142,11 @@ router.get('/bancos', (req, res)=>{
 
 /**Reporte 5: Movimientos por cuentahabiente por mes*/
 
-router.get('/moves', (req, res)=>{
+router.put('/moves', (req, res)=>{
     const { nombre_1, apellido_1, cui_1, mes, anio } = req.body;  
    const query=`select * from operaciones_by_cuentahabiente where nombre_1 = \'${nombre_1}\' AND apellido_1 = \'${apellido_1}\' and cui_1 = ${cui_1} and  mes = ${mes} and anio = ${anio}`;
     cliente.execute(query)
-    .then(result => {res.status(200).json({'result:':result.rows})})
+    .then(result => {res.status(200).json(result.rows)})
     .catch(reason => res.status(500).json({'result':reason}));
 });
 
