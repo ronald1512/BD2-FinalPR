@@ -78,8 +78,11 @@ router.post('/op-client', (req, res)=>{
         .catch(reason => res.status(500).json({'result':reason}));
     }else{
         //quiere decir que no tiene suficiente money
-        const query=`INSERT INTO falla(cui, InstitucionBancaria, tipoCuenta, descripcion, fecha) values (${cui_1}, \'${InstitucionBancaria_1}\', \'${tipoCuenta_1}\', \'La cuenta a debitar no tiene suficientes fondos. \', ${new Date()})` ;
+        const query=`INSERT INTO falla(cui, InstitucionBancaria, tipoCuenta, descripcion, fecha) values (${cui_1}, \'${InstitucionBancaria_1}\', \'${tipoCuenta_1}\', \'La cuenta a debitar no tiene suficientes fondos. \', \'${fechatransferencia}\')` ;
         console.log(query);
+        cliente.execute(query)
+        .then(result => {console.log(result);})
+        .catch(reason => console.log(reason)); 
         res.status(500).json({'result':"La cuenta a debitar no tiene suficientes fondos para el retiro."});
     }
    
@@ -133,10 +136,10 @@ router.get('/bancos', (req, res)=>{
 
  //INSERT
  router.post('/bancos', (req, res)=>{
-    const { nombre, apellido, CUI, email, fecharegistro, genero, institucionbancaria,abreviacioninst,tipocuenta, saldoInicial } = req.body;  
-   const query=`INSERT INTO CuentahabientesPorInstitucion(nombre, apellido, CUI, email, fecharegistro, genero, institucionbancaria,abreviacioninst,tipocuenta, saldoInicial) VALUES (\'${nombre}\', \'${apellido}\', ${CUI}, \'${email}\', \'${fecharegistro}\', \'${genero}\', \'${institucionbancaria}\', \'${abreviacioninst}\', \'${tipocuenta}\', ${saldoInicial});`;
+    const { nombre, apellido, cui, email, fecharegistro, genero, institucionbancaria,abreviacioninst,tipocuenta, saldoinicial } = req.body;  
+   const query=`INSERT INTO CuentahabientesPorInstitucion(nombre, apellido, CUI, email, fecharegistro, genero, institucionbancaria,abreviacioninst,tipocuenta, saldoInicial) VALUES (\'${nombre}\', \'${apellido}\', ${cui}, \'${email}\', \'${fecharegistro}\', \'${genero}\', \'${institucionbancaria}\', \'${abreviacioninst}\', \'${tipocuenta}\', ${saldoinicial});`;
    cliente.execute(query)
-    .then(result => {res.status(200).json({'result:':result})})
+    .then(result => {res.status(200).json(result)})
     .catch(reason => res.status(500).json({'result':reason}));
 });
 

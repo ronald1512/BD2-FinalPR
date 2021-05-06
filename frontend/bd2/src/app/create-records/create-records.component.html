@@ -16,33 +16,34 @@
                 >
             <br>
             <label for="name">Email:</label>
-            <input type="email" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.email"
+            <input type="email" class="form-control" required name="cui" placeholder="Email" [(ngModel)]="insert1.email"
                 >
             <br>
             <label for="name">fechaRegistro:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.fecharegistro"
+            <input type="text" class="form-control" required name="cui" placeholder="Fecha Registro" [(ngModel)]="insert1.fecharegistro"
                 >
             <br>
             <label for="name">Genero:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.genero"
+            <input type="text" class="form-control" required name="cui" placeholder="Genero" [(ngModel)]="insert1.genero"
                 >
             <br>
             <label for="name">InstitucionBancaria:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.institucionbancaria"
+            <input type="text" class="form-control" required name="cui" placeholder="Institucion Bancaria" [(ngModel)]="insert1.institucionbancaria"
                 >
             <br>
             <label for="name">AbreviacionInst:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.abreviacioninst"
+            <input type="text" class="form-control" required name="cui" placeholder="Abreviacion institucion" [(ngModel)]="insert1.abreviacioninst"
                 >
             <br>
             <label for="name">TipoCuenta:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.tipocuenta"
+            <input type="text" class="form-control" required name="cui" placeholder="Tipo Cuenta" [(ngModel)]="insert1.tipocuenta"
                 >
             <br>
             <label for="name">SaldoInicial:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.saldoinicial"
+            <input type="text" class="form-control" required name="cui" placeholder="Saldo Inicial" [(ngModel)]="insert1.saldoinicial"
                 >
             <br>
+            <button type="button" class="btn btn-primary btn-lg btn-block" (click)="addCliente()">Add</button>  
 
         </div>
     </div>
@@ -51,46 +52,70 @@
         <div class="col-md-12">
             <h1>Insertar movimiento</h1>
             <hr>
-            <label for="name">Nombre:</label>
+            <label for="name">Nombre - Debito:</label>
             <input type="text" class="form-control" required name="name" placeholder="Nombre"
-                [(ngModel)]="insert1.nombre" >
+                [(ngModel)]="insert2.nombre_1" >
             <br>
-            <label for="name">Apellido:</label>
+            <label for="name">Apellido - Debito:</label>
             <input type="text" class="form-control" required name="apellido" placeholder="Apellido"
-                [(ngModel)]="insert1.apellido" >
+                [(ngModel)]="insert2.apellido_1" >
             <br>
-            <label for="name">Cui:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.cui"
+            <label for="name">Cui - Debito:</label>
+            <input type="number" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert2.cui_1"
                 >
             <br>
-            <label for="name">Email:</label>
-            <input type="email" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.email"
+            <label for="name">Institucion Bancaria - Debito:</label>
+            <input type="text" class="form-control" required name="institucion" placeholder="Institucion Bancaria - Debito" [(ngModel)]="insert2.InstitucionBancaria_1"
                 >
             <br>
-            <label for="name">fechaRegistro:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.fecharegistro"
+            <label for="name">Tipo Cuenta - Debito:</label>
+            <input type="text" class="form-control" required name="TipoCuenta" placeholder="Tipo Cuenta - Debito" [(ngModel)]="insert2.tipoCuenta_1"
                 >
             <br>
-            <label for="name">Genero:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.genero"
+            <label for="name">Saldo Inicial - Debito:</label>
+            <input type="number" class="form-control" required name="SaldoInicial" placeholder="Saldo Inicial - Debito" [(ngModel)]="insert2.saldoinicial_1"
                 >
             <br>
-            <label for="name">InstitucionBancaria:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.institucionbancaria"
+
+            <label for="name">Nombre - Credito:</label>
+            <input type="text" class="form-control" required name="name" placeholder="Nombre"
+                [(ngModel)]="insert2.nombre_2" >
+            <br>
+            <label for="name">Apellido - Credito:</label>
+            <input type="text" class="form-control" required name="apellido" placeholder="Apellido"
+                [(ngModel)]="insert2.apellido_2" >
+            <br>
+            <label for="name">Cui - Credito:</label>
+            <input type="number" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert2.cui_2"
                 >
             <br>
-            <label for="name">AbreviacionInst:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.abreviacioninst"
+            <label for="name">Institucion Bancaria - Credito:</label>
+            <input type="text" class="form-control" required name="institucion" placeholder="Institucion Bancaria - Credito" [(ngModel)]="insert2.InstitucionBancaria_2"
                 >
             <br>
-            <label for="name">TipoCuenta:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.tipocuenta"
+            <label for="name">Tipo Cuenta - Credito:</label>
+            <input type="text" class="form-control" required name="TipoCuenta" placeholder="Tipo Cuenta - Credito" [(ngModel)]="insert2.tipoCuenta_2"
                 >
             <br>
-            <label for="name">SaldoInicial:</label>
-            <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="insert1.saldoinicial"
+            <label for="name">Saldo Inicial - Credito:</label>
+            <input type="number" class="form-control" required name="SaldoInicial" placeholder="Saldo Inicial - Credito" [(ngModel)]="insert2.saldoinicial_2"
                 >
             <br>
+            <label for="name">Monto de transferencia:</label>
+            <input type="number" class="form-control" required name="monto" placeholder="Monto de transferencia" [(ngModel)]="insert2.montotransferencia"
+                >
+            <br>
+
+            <label for="name">fechaRegistro - Debito:</label>
+            <input type="text" class="form-control" required name="cui" placeholder="Fecha Registro" [(ngModel)]="insert2.fechaRegistro_1"
+                >
+            <br>
+
+            <label for="name">fechaRegistro - Credito:</label>
+            <input type="text" class="form-control" required name="cui" placeholder="Fecha Registro" [(ngModel)]="insert2.fechaRegistro_2"
+                >
+            <br>
+            <button type="button" class="btn btn-primary btn-lg btn-block" (click)="addMov()">Add Record</button>  
 
         </div>
     </div>

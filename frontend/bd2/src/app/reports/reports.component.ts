@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reports.component.css']
 })
 export class ReportsComponent implements OnInit {
-  report1={nombre_1:"Ronald", apellido_1:"Romero", cui_1:3606169920101, result:[]}
+  report1={nombre_1:"Alfie", apellido_1:"Castellaccio", cui_1:2344960856, result:[]}
   report2={institucionbancaria:"Banco Promerica", total_debitos:0, total_creditos:0}
   report3={institucionbancaria:'Banco Promerica', result:[]}
   report4={result:[]}
-  report5={nombre_1:"Ronald", apellido_1:"Romero", cui_1:3606169920101, mes:5, anio:2021, result:[]}
+  report5={nombre_1:"Alfie", apellido_1:"Castellaccio", cui_1:2344960856, mes:3, anio:2021, result:[]}
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
