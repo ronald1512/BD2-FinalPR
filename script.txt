@@ -1,0 +1,114 @@
+CREATE KEYSPACE "ProyectoBD2_201701048"
+WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 3};   /*Quiero crearla con 3 replicas, utilizando la estrategia simple. */
+
+
+use "ProyectoBD2_201701048";
+
+CREATE TABLE CuentahabientesPorInstitucion(
+    nombre text,
+    apellido text,
+    CUI bigint,
+    email text,
+    fechaRegistro Date,
+    Genero text,
+    InstitucionBancaria text,
+    AbreviacionInst text,
+    TipoCuenta text,
+    SaldoInicial int,
+    Primary Key ((InstitucionBancaria),CUI,TipoCuenta,FechaRegistro)
+)
+WITH CLUSTERING ORDER BY(CUI DESC, TipoCuenta DESC, FechaRegistro DESC);
+
+COPY cuentahabientesporinstitucion(nombre, apellido, CUI, email, fecharegistro, genero, institucionbancaria,abreviacioninst,tipocuenta, saldoInicial) FROM 'D:\ronald\Documents\UNIVERSIDAD\2021\1S\Bases2\CLASE\files\cuentahabientes_institucion.csv' WITH HEADER=TRUE AND DELIMITER=';';
+
+
+CREATE TABLE operaciones_by_cuentahabiente (
+    nombre_1 text, 
+    apellido_1 text, 
+    cui_1 bigint, 
+    saldoinicial_1 int,
+    tipoCuenta_1 text,
+    InstitucionBancaria_1 text,
+    nombre_2 text, 
+    apellido_2 text, 
+    cui_2 bigint,
+    saldoinicial_2 int,
+    tipoCuenta_2 text,
+    InstitucionBancaria_2 text,
+    montotransferencia int, 
+    fechatransferencia timestamp,
+    mes int,
+    anio int,
+    Primary key ((nombre_1, apellido_1,cui_1),mes, anio,fechaTransferencia)
+);
+
+COPY operaciones_by_cuentahabiente(nombre_1, apellido_1, cui_1, InstitucionBancaria_1, tipoCuenta_1, saldoinicial_1, nombre_2, apellido_2, cui_2,
+InstitucionBancaria_2, tipoCuenta_2, saldoinicial_2,montotransferencia, fechatransferencia, mes, anio) FROM 'D:\ronald\Documents\UNIVERSIDAD\2021\1S\Bases2\CLASE\files\movimientos.csv' WITH HEADER=TRUE AND DELIMITER=';';
+
+
+
+
+CREATE TABLE totales_debitos (
+    InstitucionBancaria_debito text, 
+    fechatransferencia timestamp, 
+    montotransferencia int,
+    primary key (InstitucionBancaria_debito, fechatransferencia)
+);
+
+COPY totales_debitos(InstitucionBancaria_debito,montotransferencia,fechatransferencia )FROM 'D:\ronald\Documents\UNIVERSIDAD\2021\1S\Bases2\CLASE\files\totales_debitos.csv' WITH HEADER=TRUE AND DELIMITER=';';
+
+
+CREATE TABLE totales_creditos (
+    InstitucionBancaria_credito text, 
+    fechatransferencia timestamp, 
+    montotransferencia int,
+    primary key (InstitucionBancaria_credito, fechatransferencia)
+);
+
+COPY totales_creditos(InstitucionBancaria_credito,montotransferencia,fechatransferencia )FROM 'D:\ronald\Documents\UNIVERSIDAD\2021\1S\Bases2\CLASE\files\totales_creditos.csv' WITH HEADER=TRUE AND DELIMITER=';';
+
+
+
+CREATE TABLE falla(
+    cui bigint,
+    InstitucionBancaria text, 
+    tipoCuenta text, 
+    descripcion text,
+    fecha timestamp,
+    primary key (cui, InstitucionBancaria,fecha)
+);
+
+/**Carnet:201701048*/
+
+/**Reporte 1: Operaciones realizadas por un cuentahabiente*/
+
+select count(*) from operaciones_by_cuentahabiente where nombre_1='Alfie' and apellido_1='Castellaccio' and cui_1=2344960856;
+
+
+/**Reporte 2: Totales de créditos y débitos para una institucion financiera*/
+
+
+select SUM(montotransferencia) as Total_Debitos from totales_debitos where institucionbancaria_debito='Banco Promerica';
+
+
+select SUM(montotransferencia) as Total_Creditos from totales_creditos where institucionbancaria_credito='Banco Promerica';
+
+
+/**Reporte 3: Cuentahabientes*/
+
+select COUNT(*) from CuentahabientesPorInstitucion;
+
+
+/**Reporte 4: Instituciones bancarias*/
+
+select distinct count(InstitucionBancaria) as Instituciones_Bancarias from CuentahabientesPorInstitucion;
+
+
+/**Reporte 5: Movimientos por cuentahabiente por mes*/
+    
+select count(*) from operaciones_by_cuentahabiente where nombre_1='Maggee' and apellido_1='Shergold' and cui_1=6816494733 and  mes=5 and anio=2020;
+
+
+
+
+
