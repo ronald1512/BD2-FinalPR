@@ -1,0 +1,213 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Reporte de operaciones realizadas por un cuentahabiente</h1>
+      <hr>
+      <label for="name">Nombre:</label>
+      <input type="text" class="form-control" required name="name" placeholder="Nombre" [(ngModel)]="report1.nombre_1" (ngModelChange)="Reporte1()">
+      <br>
+      <label for="name">Apellido:</label>
+      <input type="text" class="form-control" required name="apellido" placeholder="Apellido"
+        [(ngModel)]="report1.apellido_1" (ngModelChange)="Reporte1()">
+      <br>
+      <label for="name">Cui:</label>
+      <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="report1.cui_1" (ngModelChange)="Reporte1()">
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">nombre_1</th>
+            <th scope="col">apellido_1</th>
+            <th scope="col">cui_1</th>
+            <th scope="col">saldoinicial_1</th>
+            <th scope="col">tipoCuenta_1</th>
+            <th scope="col">InstitucionBancaria_1</th>
+            <th scope="col">nombre_2</th>
+            <th scope="col">apellido_2</th>
+            <th scope="col">cui_2</th>
+            <th scope="col">saldoinicial_2</th>
+            <th scope="col">tipoCuenta_2</th>
+            <th scope="col">InstitucionBancaria_2</th>
+            <th scope="col">montotransferencia</th>
+            <th scope="col">fechatransferencia</th>
+            <th scope="col">mes</th>
+            <th scope="col">anio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of report1.result">
+            <td>{{item.nombre_1}}</td>
+            <td>{{item.apellido_1}}</td>
+            <td>{{item.cui_1}}</td>
+            <td>{{item.saldoinicial_1}}</td>
+            <td>{{item.tipocuenta_1}}</td>
+            <td>{{item.institucionbancaria_1}}</td>
+            <td>{{item.nombre_2}}</td>
+            <td>{{item.apellido_2}}</td>
+            <td>{{item.cui_2}}</td>
+            <td>{{item.saldoinicial_2}}</td>
+            <td>{{item.tipocuenta_2}}</td>
+            <td>{{item.institucionbancaria_2}}</td>
+            <td>{{item.montotransferencia}}</td>
+            <td>{{item.fechatransferencia}}</td>
+            <td>{{item.mes}}</td>
+            <td>{{item.anio}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Reporte de totales de créditos y débitos para una institución financiera</h1>
+      <hr>
+      <label for="name">Institucion Financiera:</label>
+      <input type="text" class="form-control" required name="name" placeholder="Nombre"
+        [(ngModel)]="report2.institucionbancaria" (ngModelChange)="Reporte2()">
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Total_Creditos</th>
+            <th scope="col">Total_Debitos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{report2.total_creditos}}</td>
+            <td>{{report2.total_debitos}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Reporte de cuentahabientes</h1>
+      <hr>
+      <label for="name">Institucion Financiera:</label>
+      <input type="text" class="form-control" required name="name" placeholder="Nombre"
+        [(ngModel)]="report3.institucionbancaria" (ngModelChange)="Reporte3()">
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">nombre</th>
+            <th scope="col">apellido</th>
+            <th scope="col">CUI</th>
+            <th scope="col">email</th>
+            <th scope="col">fechaRegistro</th>
+            <th scope="col">Genero</th>
+            <th scope="col">InstitucionBancaria</th>
+            <th scope="col">AbreviacionInst</th>
+            <th scope="col">TipoCuenta</th>
+            <th scope="col">SaldoInicial</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of report3.result">
+            <td>{{item.nombre}}</td>
+            <td>{{item.apellido}}</td>
+            <td>{{item.cui}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.fecharegistro}}</td>
+            <td>{{item.genero}}</td>
+            <td>{{item.institucionbancaria}}</td>
+            <td>{{item.abreviacioninst}}</td>
+            <td>{{item.tipocuenta}}</td>
+            <td>{{item.saldoinicial}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Reporte de instituciones bancarias</h1>
+      <hr>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Institucion Bancaria</th>
+            <th scope="col">AbreviacionInst</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of report4.result">
+            <td>{{item.institucionbancaria}}</td>
+            <td>{{item.abreviacioninst}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Reporte de movimientos por cuentahabiente por mes</h1>
+      <hr>
+      <label for="name">Nombre:</label>
+      <input type="text" class="form-control" required name="name" placeholder="Nombre" [(ngModel)]="report5.nombre_1" (ngModelChange)="Reporte5()">
+      <br>
+      <label for="name">Apellido:</label>
+      <input type="text" class="form-control" required name="apellido" placeholder="Apellido"
+        [(ngModel)]="report5.apellido_1" (ngModelChange)="Reporte5()">
+      <br>
+      <label for="name">Cui:</label>
+      <input type="text" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="report5.cui_1" (ngModelChange)="Reporte5()">
+      <br>
+      <label for="name">Mes:</label>
+      <input type="number" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="report5.mes" (ngModelChange)="Reporte5()">
+      <br>
+      <label for="name">Anio:</label>
+      <input type="number" class="form-control" required name="cui" placeholder="Cui" [(ngModel)]="report5.anio" (ngModelChange)="Reporte5()">
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">nombre_1</th>
+            <th scope="col">apellido_1</th>
+            <th scope="col">cui_1</th>
+            <th scope="col">saldoinicial_1</th>
+            <th scope="col">tipoCuenta_1</th>
+            <th scope="col">InstitucionBancaria_1</th>
+            <th scope="col">nombre_2</th>
+            <th scope="col">apellido_2</th>
+            <th scope="col">cui_2</th>
+            <th scope="col">saldoinicial_2</th>
+            <th scope="col">tipoCuenta_2</th>
+            <th scope="col">InstitucionBancaria_2</th>
+            <th scope="col">montotransferencia</th>
+            <th scope="col">fechatransferencia</th>
+            <th scope="col">mes</th>
+            <th scope="col">anio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of report5.result">
+            <td>{{item.nombre_1}}</td>
+            <td>{{item.apellido_1}}</td>
+            <td>{{item.cui_1}}</td>
+            <td>{{item.saldoinicial_1}}</td>
+            <td>{{item.tipocuenta_1}}</td>
+            <td>{{item.institucionbancaria_1}}</td>
+            <td>{{item.nombre_2}}</td>
+            <td>{{item.apellido_2}}</td>
+            <td>{{item.cui_2}}</td>
+            <td>{{item.saldoinicial_2}}</td>
+            <td>{{item.tipocuenta_2}}</td>
+            <td>{{item.institucionbancaria_2}}</td>
+            <td>{{item.montotransferencia}}</td>
+            <td>{{item.fechatransferencia}}</td>
+            <td>{{item.mes}}</td>
+            <td>{{item.anio}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
