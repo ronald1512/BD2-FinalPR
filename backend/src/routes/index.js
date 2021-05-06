@@ -154,4 +154,12 @@ router.put('/moves', (req, res)=>{
 });
 
 
+router.get('/fallas', (req, res)=>{
+    const query=`select * from falla;`;
+     cliente.execute(query)
+     .then(result => {res.status(200).json(result.rows)})
+     .catch(reason => res.status(500).json({'result':reason}));
+ });
+
+
 module.exports=router; //con esto exportamos el elemento

@@ -8,13 +8,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CreateRecordsComponent } from './create-records/create-records.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FailsComponent } from './fails/fails.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReportsComponent,
     NavbarComponent,
-    CreateRecordsComponent
+    CreateRecordsComponent,
+    FailsComponent
   ],
   imports: [
     BrowserModule,
